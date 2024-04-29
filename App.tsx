@@ -1,11 +1,11 @@
 
 import React, { Component } from 'react';
 
-import {Home} from './Screen/Home'
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { ProductScreen } from './Screen/ProductScreen';
+import { Home } from './Screen/Home';
 
 import { Provider } from 'react-redux';
 import MyStore from './reduxtoolkit/MyStore';
@@ -22,9 +22,6 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={Home} />
-       
-        <Stack.Screen name="ProductScreen" component={ProductScreen} />
-     
         <Stack.Screen name="CartScreen" component={CartScreen} />
         <Stack.Screen name="DetailScreen" component={DetailScreen} />
       </Stack.Navigator>

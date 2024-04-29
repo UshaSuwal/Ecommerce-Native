@@ -2,7 +2,7 @@ import React from 'react';
 import {FlatList, Text, View, Image, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {removeCartItem} from '../reduxtoolkit/Slice';
-import {TouchableButton} from '../components/atoms/Smallbutton';
+
 import { CartItem } from '../components/CartItem';
 
 export function CartScreen({navigation}) {
@@ -13,7 +13,6 @@ export function CartScreen({navigation}) {
     dispatch(removeCartItem(item));
   };
 
-  
 
   return (
     <View style={{flex: 1, padding: 20}}>

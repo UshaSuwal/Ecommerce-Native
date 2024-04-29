@@ -1,6 +1,6 @@
 import React from "react"
 import { TouchableOpacity, Text,Image,Button,StyleSheet } from "react-native"
-export function Card({product, navigation}){
+export function Card({product, navigation,addItem}){
     return(
         <TouchableOpacity key={product.id} style={styles.productContainer} onPress={() => navigation.navigate("DetailScreen", { product: product })}>
               <Image source={{ uri: product.thumbnail }} style={styles.thumbnail} />
