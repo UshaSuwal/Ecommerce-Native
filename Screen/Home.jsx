@@ -7,6 +7,10 @@ import { addCartItem } from '../reduxtoolkit/Slice';
 import { TouchableButton } from '../components/atoms/Smallbutton';
 import { Card } from '../components/Card';
 
+
+
+
+
 export function Home({ navigation }) {
   const [results, searchApi, errorMessage] = useSearch();
   const [term, setTerm] = useState('');
@@ -26,7 +30,7 @@ export function Home({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={{ alignItems: 'flex-end' }}>
-        <TouchableButton name="Cart" length={addedItem.cart.length} navigation={navigation}/>
+        <TouchableButton name="Cart" length={addedItem.cart.length} navigation={navigation} screen="CartScreen"/>
       </View>
       <SearchBar
         term={term}
@@ -42,6 +46,8 @@ export function Home({ navigation }) {
           ))}
         </View>
       </ScrollView>
+
+     
     </View>
   );
 }
@@ -63,35 +69,5 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
-  productContainer: {
-    backgroundColor: '#fff',
-    width: '48%',
-    marginBottom: 15,
-    borderRadius: 10,
-    elevation: 3,
-  },
-  thumbnail: {
-    width: '100%',
-    height: 150,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-  },
-  productBrand: {
-    marginVertical: 5,
-    marginHorizontal: 10,
-    color: '#333',
-    fontSize: 16,
-  },
-  productTitle: {
-    marginHorizontal: 10,
-    marginBottom: 5,
-    color: '#666',
-  },
-  productPrice: {
-    marginHorizontal: 10,
-    marginBottom: 10,
-    color: '#009688',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
+  
 });
