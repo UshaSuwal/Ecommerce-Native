@@ -11,7 +11,9 @@ import { Card } from '../components/Card';
 
 
 
-export function Home({ navigation }) {
+
+
+export function ProductScreen({ navigation }) {
   const [results, searchApi, errorMessage] = useSearch();
   const [term, setTerm] = useState('');
   
@@ -30,7 +32,7 @@ export function Home({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={{ alignItems: 'flex-end' }}>
-        <TouchableButton name="Cart" length={addedItem.cart.length} navigation={navigation} screen="CartScreen"/>
+        <TouchableButton name="Cart" length={addedItem.cart.length} navigation={navigation} screen="Cart"/>
       </View>
       <SearchBar
         term={term}
