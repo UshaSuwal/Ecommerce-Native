@@ -1,16 +1,13 @@
 import React from 'react';
 import {
-  TouchableOpacity,
+  FlatList,
   Text,
   Image,
-  Button,
-  StyleSheet,
   View,
+  TouchableOpacity,
 } from 'react-native';
+
 export function CartItem({addedItem,removeItem}) {
-
-
-   
     
       const renderItem = ({item}) => (
         <View style={{flexDirection: 'row', marginBottom: 20}}>
@@ -31,7 +28,16 @@ export function CartItem({addedItem,removeItem}) {
             <Text style={{marginBottom: 10, color: 'black'}}>
               Quantity: {item.quantity}
             </Text>
-            <TouchableButton name="Remove" navigation={navigation} />
+            <TouchableOpacity
+          onPress={() => removeItem(item)}
+          style={{
+            backgroundColor: 'rgb(50, 160, 255)',
+            width:70,
+            alignItems: 'center',
+            borderRadius: 5,
+          }}>
+          <Text style={{ color: 'white', fontSize: 16 , padding:10}}>Remove</Text>
+        </TouchableOpacity>
           </View>
         </View>
       );
