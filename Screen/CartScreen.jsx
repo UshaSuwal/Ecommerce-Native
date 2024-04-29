@@ -1,46 +1,50 @@
 import React from 'react';
-import { FlatList, Text, View, Image, TouchableOpacity } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { removeCartItem } from '../reduxtoolkit/Slice';
+import {FlatList, Text, View, Image, TouchableOpacity} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {removeCartItem} from '../reduxtoolkit/Slice';
+import {TouchableButton} from '../components/atoms/Smallbutton';
 
-export function CartScreen() {
+export function CartScreen({navigation}) {
   const addedItem = useSelector(state => state);
   const dispatch = useDispatch();
-  
+
   const removeItem = item => {
     dispatch(removeCartItem(item));
   };
 
-  const renderItem = ({ item }) => (
-    <View style={{ flexDirection: 'row', marginBottom: 20 }}>
+  const renderItem = ({item}) => (
+    <View style={{flexDirection: 'row', marginBottom: 20}}>
       <Image
-        source={{ uri: item.thumbnail }}
-        style={{ width: 100, height: 100, marginRight: 10 }}
+        source={{uri: item.thumbnail}}
+        style={{width: 100, height: 100, marginRight: 10}}
       />
-      <View style={{ flex: 1 }}>
-        <Text style={{ fontWeight: 'bold', color: 'black', marginBottom: 5 }}>
+      <View style={{flex: 1}}>
+        <Text style={{fontWeight: 'bold', color: 'black', marginBottom: 5}}>
           {item.title}
         </Text>
-        <Text style={{ marginBottom: 5,color: 'black' }}>{item.description}</Text>
-        <Text style={{ marginBottom: 5,color: 'black' }}>Price: ${item.price}</Text>
-        <Text style={{ marginBottom: 10,color: 'black' }}>Quantity: {item.quantity}</Text>
-        <TouchableOpacity
-          onPress={() => removeItem(item)}
-          style={{
-            backgroundColor: 'rgb(50, 160, 255)',
-            width:70,
-            alignItems: 'center',
-            borderRadius: 5,
-          }}>
-          <Text style={{ color: 'white', fontSize: 16 , padding:10}}>Remove</Text>
-        </TouchableOpacity>
+        <Text style={{marginBottom: 5, color: 'black'}}>
+          {item.description}
+        </Text>
+        <Text style={{marginBottom: 5, color: 'black'}}>
+          Price: ${item.price}
+        </Text>
+        <Text style={{marginBottom: 10, color: 'black'}}>
+          Quantity: {item.quantity}
+        </Text>
+        <TouchableButton name="Remove" navigation={navigation} />
       </View>
     </View>
   );
 
   return (
-    <View style={{ flex: 1, padding: 20 }}>
-      <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20,color: 'black' }}>
+    <View style={{flex: 1, padding: 20}}>
+      <Text
+        style={{
+          fontSize: 24,
+          fontWeight: 'bold',
+          marginBottom: 20,
+          color: 'black',
+        }}>
         Your Cart
       </Text>
       {addedItem.cart.length === 0 ? (
@@ -60,7 +64,7 @@ export function CartScreen() {
           marginTop: 20,
           alignItems: 'flex-end',
         }}>
-        <Text style={{ fontSize: 18, fontWeight: 'bold',color: 'black' }}>
+        <Text style={{fontSize: 18, fontWeight: 'bold', color: 'black'}}>
           Total Items: {addedItem.cart.length}
         </Text>
       </View>
