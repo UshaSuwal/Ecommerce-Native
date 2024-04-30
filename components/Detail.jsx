@@ -1,6 +1,6 @@
 import React from "react";
 import { Text,View,StyleSheet } from "react-native";
-export function Detail({price, product}) {
+export function Detail({product}) {
   return (
     <>
       <Text style={styles.title}>{product.title}</Text>

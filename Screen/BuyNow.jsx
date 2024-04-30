@@ -2,9 +2,11 @@ import React from "react";
 import { Text, View, Image, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { ImageList } from "../components/ImageList";
 import { Detail } from '../components/Detail';
+import { Suggest } from "../components/Suggest";
 
 export function BuyNowScreen({ route }) {
   const { product } = route.params;
+  const {results}=route.params;
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -17,9 +19,11 @@ export function BuyNowScreen({ route }) {
         <Text style={styles.afterprice}>After Discount: ${(product.price.toFixed(2)-((product.discountPercentage/100)*product.price.toFixed(2))).toFixed(2)}</Text>
         <TouchableOpacity style={{width:100,backgroundColor:"brown", alignItems:"center",borderRadius:5}}>
             <Text style={{color:"white", padding:5, fontSize:25}}>Pay Now</Text>
-          </TouchableOpacity>
+        </TouchableOpacity>
+        
         
       </View>
+      <Suggest results={results} product={product}/>
       
     </ScrollView>
   );

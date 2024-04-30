@@ -15,8 +15,9 @@ import { Detail } from '../components/Detail';
 
 export function DetailScreen({ route, navigation }) {
   const { product } = route.params;
+  const {results} = route.params;
   const dispatch = useDispatch();
-  const [addedToCart, setAddedToCart] = useState(false); // State to track whether item is added to cart
+  const [addedToCart, setAddedToCart] = useState(false); 
   const [selectedImage, setSelectedImage] = useState(product.thumbnail);
 
   const addItem = item => {
@@ -46,7 +47,7 @@ export function DetailScreen({ route, navigation }) {
           <TouchableOpacity
             style={[styles.addButton, styles.buyNowButton]}
             onPress={() =>
-              navigation.navigate("BuyNowScreen", { product: product })
+              navigation.navigate("BuyNowScreen", { product: product,results:results })
             }
           >
             <Text style={styles.addButtonText}>Buy Now</Text>

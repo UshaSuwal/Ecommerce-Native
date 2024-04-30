@@ -4,9 +4,10 @@ import SearchBar from '../components/SearchBar';
 import useSearch from '../hooks/useSearch';
 import { useSelector, useDispatch } from 'react-redux';
 import { addCartItem } from '../reduxtoolkit/Slice';
-import { TouchableButton } from '../components/atoms/Smallbutton';
+
 import { Card } from '../components/Card';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { CardCategory } from '../components/CardCategory';
 
 
 
@@ -61,14 +62,14 @@ export function ProductScreen({ navigation }) {
           navigation={navigation}
           addItem={addItem}
         />
-      <Card
+      <CardCategory
           results={filterResultsByCategory('smartphones')}
           title="Smartphones"
           navigation={navigation}
           addItem={addItem}
         />
-        <Card results={filterResultsByCategory('laptops')} title="Laptops" navigation={navigation} addItem={addItem}/>
-        <Card
+        <CardCategory results={filterResultsByCategory('laptops')} title="Laptops" navigation={navigation} addItem={addItem}/>
+        <CardCategory
           results={filterResultsByCategory('fragrances')}
           title="Fragrances"
           navigation={navigation}

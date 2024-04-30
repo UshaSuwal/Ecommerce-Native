@@ -1,15 +1,7 @@
 import React from "react";
 import { TouchableOpacity, Text, Image, Button, StyleSheet, View, FlatList, Dimensions } from "react-native";
-import { useDispatch } from "react-redux";
-import { addCartItem } from "../reduxtoolkit/Slice";
-export function Card({ results, navigation, title }) {
 
-  const dispatch = useDispatch();
-  const addItem = (item) => {
-    if (item) {
-      dispatch(addCartItem(item));
-    }
-  }
+export function CardCategory({ results, navigation, addItem, title }) {
   if (!results.length) {
     return null;
   }
@@ -18,28 +10,28 @@ export function Card({ results, navigation, title }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
       
-        <View>
-          
+      
+      <View>
+        <Text style={styles.title}>{title}</Text>
         <FlatList
-          
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
           data={results}
           keyExtractor={result => result.id}
-          numColumns={3}
           renderItem={({ item }) => (
             <TouchableOpacity
               key={item.id}
-              style={[styles.productContainer, styles.verticalProduct]}
+              style={[styles.productContainer, styles.horizontalProduct]}
               onPress={() =>
-                navigation.navigate("DetailScreen", { product: item, results:results })
+                navigation.navigate("DetailScreen", { product: item })
               }
             >
               <Image source={{ uri: item.thumbnail }} style={styles.thumbnail} />
               <Text style={styles.productBrand}>{item.brand}</Text>
               <Text style={styles.productTitle}>{item.title}</Text>
               <Text style={styles.productPrice}>${item.price}</Text>
-              <Button title="Cart+" onPress={() => addItem(item)} />
+              <Button title="Add to Cart" onPress={() => addItem(item)} />
             </TouchableOpacity>
           )}
         />
