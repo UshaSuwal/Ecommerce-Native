@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux';
 import { addCartItem } from '../reduxtoolkit/Slice';
 import { ImageList } from "../components/ImageList";
 import { Detail } from '../components/Detail';
+import { CartIcon } from '../components/atoms/CartIcon';
 
 export function DetailScreen({ route, navigation }) {
   const { product } = route.params;
@@ -32,6 +33,9 @@ export function DetailScreen({ route, navigation }) {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <View style={{alignItems:'flex-end', top:30, marginRight:30}}>
+      <CartIcon navigation={navigation}/>
+      </View>
       <ImageList product={product}/>
       <View style={styles.detailsContainer}>
         <Detail product={product}/>

@@ -8,11 +8,7 @@ import { addCartItem } from '../reduxtoolkit/Slice';
 import { Card } from '../components/Card';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { CardCategory } from '../components/CardCategory';
-
-
-
-
-
+import { CartIcon } from '../components/atoms/CartIcon';
 
 
 export function ProductScreen({ navigation }) {
@@ -42,10 +38,8 @@ export function ProductScreen({ navigation }) {
     <View style={styles.container}>
       <View style={{ alignItems: 'flex-end' }}>
 
-        <TouchableOpacity style={{ marginBottom: 10, marginRight: 10, alignItems:"center", flexDirection:"row" }} onPress={()=>{navigation.navigate("Cart")}} >
-        <Icon name="shopping-cart" size={30} color="rgb(251 146 60)" />
-        <Text style={{color:"orange", fontSize:20, marginLeft:5, marginTop:15}} >{addedItem.cart.length}</Text>
-        </TouchableOpacity>
+        
+        <CartIcon navigation={navigation}/>
         
       </View>
       <SearchBar

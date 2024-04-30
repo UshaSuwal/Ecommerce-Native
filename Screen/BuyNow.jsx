@@ -3,29 +3,32 @@ import { Text, View, Image, StyleSheet, ScrollView, TouchableOpacity } from "rea
 import { ImageList } from "../components/ImageList";
 import { Detail } from '../components/Detail';
 import { Suggest } from "../components/Suggest";
+import { CartIcon } from "../components/atoms/CartIcon";
 
-export function BuyNowScreen({ route }) {
+export function BuyNowScreen({ route ,navigation}) {
   const { product } = route.params;
   const {results}=route.params;
 
   return (
+    <>
+    <View style={styles.cartIconContainer}>
+        <CartIcon navigation={navigation}/>
+      </View>
     <ScrollView contentContainerStyle={styles.container}>
       
       <ImageList product={product}/>
       
       <View style={styles.detailsContainer}>
-      <Detail product={product}/>
+        <Detail product={product}/>
         <Text style={styles.price}>Before Discount: ${product.price.toFixed(2)}</Text>
         <Text style={styles.afterprice}>After Discount: ${(product.price.toFixed(2)-((product.discountPercentage/100)*product.price.toFixed(2))).toFixed(2)}</Text>
         <TouchableOpacity style={{width:100,backgroundColor:"brown", alignItems:"center",borderRadius:5}}>
             <Text style={{color:"white", padding:5, fontSize:25}}>Pay Now</Text>
         </TouchableOpacity>
-        
-        
       </View>
       <Suggest results={results} product={product}/>
-      
     </ScrollView>
+    </>
   );
 }
 
@@ -33,8 +36,18 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: "rgb(255 237 213)",
+    marginTop:30,
   },
-  
+  cartIconContainer: {
+    position: 'absolute',
+    paddingTop: 30,
+    paddingRight:30,
+    zIndex: 999, 
+    width: '100%',
+    
+    alignItems:'flex-end',
+    backgroundColor:"rgb(255 237 213)",
+  },
   detailsContainer: {
     width: '90%',
     alignItems: 'flex-start',
@@ -44,7 +57,6 @@ const styles = StyleSheet.create({
     elevation: 3,
     alignSelf: 'center',
   },
-  
   price: {
     fontSize: 20,
     fontWeight: "bold",
@@ -57,6 +69,4 @@ const styles = StyleSheet.create({
     color: "green",
     marginBottom: 20,
   },
-  
-  
 });
