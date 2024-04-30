@@ -13,9 +13,9 @@ export function Card({ results, navigation, title }) {
       toast.show("Item added to cart successfully", {
         type: "success",
         placement: "top",
-        duration: 4000,
+        duration: 2000,
         offset: 30,
-        animationType: "slide-in",
+        animationType: "zoom-in",
         textColor: "black", 
       });
     }
