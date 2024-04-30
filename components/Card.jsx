@@ -2,12 +2,22 @@ import React from "react";
 import { TouchableOpacity, Text, Image, Button, StyleSheet, View, FlatList, Dimensions } from "react-native";
 import { useDispatch } from "react-redux";
 import { addCartItem } from "../reduxtoolkit/Slice";
+import { useToast } from "react-native-toast-notifications";
 export function Card({ results, navigation, title }) {
 
   const dispatch = useDispatch();
+  const toast = useToast();
   const addItem = (item) => {
     if (item) {
       dispatch(addCartItem(item));
+      toast.show("Item added to cart successfully", {
+        type: "success",
+        placement: "top",
+        duration: 4000,
+        offset: 30,
+        animationType: "slide-in",
+        textColor: "black", 
+      });
     }
   }
   if (!results.length) {

@@ -33,10 +33,11 @@ const styles = StyleSheet.create({
         
       },
       mainImage: {
-        width: 300,
-        height: 300,
+        width: 230,
+        height: 230,
         resizeMode: "contain",
         marginBottom:-30,
+        marginTop:15,
       },
       smallImageContainer: {
         width: 50,
@@ -45,6 +46,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         overflow: 'hidden',
         marginBottom:20,
+        marginTop:40,
       },
       smallImage: {
         width: '100%',

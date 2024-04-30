@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Image, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import { Text, View,StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { ImageList } from "../components/ImageList";
 import { Detail } from '../components/Detail';
 import { Suggest } from "../components/Suggest";
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   cartIconContainer: {
     position: 'absolute',
-    paddingTop: 30,
+    paddingTop: 5,
     paddingRight:30,
     zIndex: 999, 
     width: '100%',

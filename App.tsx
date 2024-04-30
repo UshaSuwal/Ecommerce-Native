@@ -12,6 +12,7 @@ import { BuyNowScreen } from './Screen/BuyNow';
 import Login from './Screen/Login';
 import { LogBox } from 'react-native';
 import { CheckOut } from './Screen/Checkout';
+import { ToastProvider } from 'react-native-toast-notifications';
 
 LogBox.ignoreAllLogs();
 const Tab = createBottomTabNavigator();
@@ -30,28 +31,30 @@ function ProductStack() {
 
 function App() {
   return (
-    <Provider store={MyStore}>
-      <NavigationContainer>
-        <Tab.Navigator screenOptions={{ headerShown: false }}>
-          <Tab.Screen
-            name="Home"
-            component={ProductStack}
-            options={{
-              tabBarIcon: () => (<Icon name="home" size={30} color="black" />),
-              tabBarLabel: ''
-            }}
-          />
-          <Tab.Screen
-            name="Cart"
-            component={CartScreen}
-            options={{
-              tabBarIcon: () => (<Icon name="shopping-cart" size={30} color="black" />),
-              tabBarLabel: ''
-            }}
-          />
-        </Tab.Navigator>
-      </NavigationContainer>
-    </Provider>
+    <ToastProvider>
+      <Provider store={MyStore}>
+        <NavigationContainer>
+          <Tab.Navigator screenOptions={{ headerShown: false }}>
+            <Tab.Screen
+              name="Home"
+              component={ProductStack}
+              options={{
+                tabBarIcon: () => (<Icon name="home" size={30} color="black" />),
+                tabBarLabel: ''
+              }}
+            />
+            <Tab.Screen
+              name="Cart"
+              component={CartScreen}
+              options={{
+                tabBarIcon: () => (<Icon name="shopping-cart" size={30} color="black" />),
+                tabBarLabel: ''
+              }}
+            />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </Provider>
+    </ToastProvider>
   );
 }
 

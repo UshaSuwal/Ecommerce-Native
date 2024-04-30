@@ -13,21 +13,27 @@ import { addCartItem } from '../reduxtoolkit/Slice';
 import { ImageList } from "../components/ImageList";
 import { Detail } from '../components/Detail';
 import { CartIcon } from '../components/atoms/CartIcon';
+import { useToast } from "react-native-toast-notifications";
 
 export function DetailScreen({ route, navigation }) {
   const { product } = route.params;
   const {results} = route.params;
   const dispatch = useDispatch();
-  const [addedToCart, setAddedToCart] = useState(false); 
+  const toast = useToast();
 
 
   const addItem = item => {
     if (item) {
       dispatch(addCartItem(item));
-      setAddedToCart(true);
-      setTimeout(() => {
-        setAddedToCart(false);
-      }, 2000);
+      toast.show("Item added to cart successfully", {
+        type: "success",
+        placement: "top",
+        duration: 4000,
+        offset: 30,
+        animationType: "slide-in",
+        textColor: "black", 
+      });
+      
     }
   };
 
@@ -58,13 +64,7 @@ export function DetailScreen({ route, navigation }) {
           </TouchableOpacity>
         </View>
 
-        <View style={{ height: 50 }}>
-          {addedToCart && (
-            <Text style={{ color: 'green', marginTop: 5 }}>
-              Successfully added to cart
-            </Text>
-          )}
-        </View>
+        
       </View>
     </ScrollView>
   );
