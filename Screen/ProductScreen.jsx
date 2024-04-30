@@ -29,6 +29,13 @@ export function ProductScreen({ navigation }) {
     }
   }
 
+  const filterResultsByPrice = price => {
+    
+    return results.filter(result => {
+      return result.category === price;
+    });
+  };
+
   return (
     <View style={styles.container}>
       <View style={{ alignItems: 'flex-end' }}>
@@ -42,11 +49,25 @@ export function ProductScreen({ navigation }) {
 
       {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
       <ScrollView>
-        <View style={styles.resultsContainer}>
-          {results.map(product => (
-            <Card product={product} navigation={navigation} addItem={addItem}/>
-          ))}
-        </View>
+      <Card
+          results={results}
+          title="All"
+          navigation={navigation}
+          addItem={addItem}
+        />
+      <Card
+          results={filterResultsByPrice('smartphones')}
+          title="Smartphones"
+          navigation={navigation}
+          addItem={addItem}
+        />
+        <Card results={filterResultsByPrice('laptops')} title="Laptops" navigation={navigation} addItem={addItem}/>
+        <Card
+          results={filterResultsByPrice('fragrances')}
+          title="Fragrances"
+          navigation={navigation}
+          addItem={addItem}
+        />
       </ScrollView>
 
      

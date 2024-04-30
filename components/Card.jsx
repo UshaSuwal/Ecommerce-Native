@@ -1,51 +1,120 @@
-import React from "react"
-import { TouchableOpacity, Text,Image,Button,StyleSheet } from "react-native"
-export function Card({product, navigation,addItem}){
-    return(
-        <TouchableOpacity key={product.id} style={styles.productContainer} onPress={() => navigation.navigate("DetailScreen", { product: product })}>
-              <Image source={{ uri: product.thumbnail }} style={styles.thumbnail} />
-              <Text style={styles.productBrand}>{product.brand}</Text>
-              <Text style={styles.productTitle}>{product.title}</Text>
-              <Text style={styles.productPrice}>${product.price}</Text>
-              <Button title='Add to cart' onPress={() => { addItem(product) }} />
-              
+import React from "react";
+import { TouchableOpacity, Text, Image, Button, StyleSheet, View, FlatList, Dimensions } from "react-native";
+
+export function Card({ results, navigation, addItem, title }) {
+  if (!results.length) {
+    return null;
+  }
+
+  const screenWidth = Dimensions.get('window').width;
+
+  return (
+    <View style={styles.container}>
+      {title === "All" && <Text style={styles.title}>All</Text>}
+      {title !== "All" ? (
+        <View>
+        <Text style={styles.title}>{title}</Text>
+        <FlatList
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          data={results}
+          keyExtractor={result => result.id}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              key={item.id}
+              style={[styles.productContainer, styles.horizontalProduct]}
+              onPress={() =>
+                navigation.navigate("DetailScreen", { product: item })
+              }
+            >
+              <Image source={{ uri: item.thumbnail }} style={styles.thumbnail} />
+              <Text style={styles.productBrand}>{item.brand}</Text>
+              <Text style={styles.productTitle}>{item.title}</Text>
+              <Text style={styles.productPrice}>${item.price}</Text>
+              <Button title="Add to Cart" onPress={() => addItem(item)} />
             </TouchableOpacity>
-    )
+          )}
+        />
+        </View>
+      ) : (
+        <View>
+          
+        <FlatList
+          horizontal={false}
+          data={results}
+          keyExtractor={result => result.id}
+          numColumns={3}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              key={item.id}
+              style={[styles.productContainer, styles.verticalProduct]}
+              onPress={() =>
+                navigation.navigate("DetailScreen", { product: item })
+              }
+            >
+              <Image source={{ uri: item.thumbnail }} style={styles.thumbnail} />
+              <Text style={styles.productBrand}>{item.brand}</Text>
+              <Text style={styles.productTitle}>{item.title}</Text>
+              <Text style={styles.productPrice}>${item.price}</Text>
+              <Button title="Cart" onPress={() => addItem(item)} />
+            </TouchableOpacity>
+          )}
+        />
+        </View>
+      )}
+    </View>
+  );
 }
 
-
 const styles = StyleSheet.create({
-    
-    productContainer: {
-      backgroundColor: '#fff',
-      width: '48%',
-      marginBottom: 15,
-      borderRadius: 10,
-      elevation: 3,
-    },
-    thumbnail: {
-      width: '100%',
-      height: 150,
-      borderTopLeftRadius: 10,
-      borderTopRightRadius: 10,
-    },
-    productBrand: {
-      marginVertical: 5,
-      marginHorizontal: 10,
-      color: '#333',
-      fontSize: 16,
-    },
-    productTitle: {
-      marginHorizontal: 10,
-      marginBottom: 5,
-      color: '#666',
-    },
-    productPrice: {
-      marginHorizontal: 10,
-      marginBottom: 10,
-      color: '#009688',
-      fontSize: 16,
-      fontWeight: 'bold',
-    },
-  });
-  
+  container: {
+    marginBottom: 20,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginLeft: 10,
+    marginBottom: 10,
+    color: "black",
+  },
+  productContainer: {
+    backgroundColor: "#fff",
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    width: (Dimensions.get('window').width - 60) / 3, // Adjust width dynamically based on screen width
+    alignItems: "center",
+    marginBottom: 20,
+    padding: 10,
+    marginHorizontal: 5, // Add horizontal margin for gap between cards
+  },
+  horizontalProduct: {
+    marginRight: 10,
+  },
+  verticalProduct: {
+    marginBottom: 10,
+  },
+  thumbnail: {
+    width: 100, // Adjust thumbnail width
+    height: 100, // Adjust thumbnail height
+    marginBottom: 5,
+    resizeMode: "cover",
+  },
+  productBrand: {
+    fontSize: 12, // Reduce font size
+    fontWeight: "bold",
+    marginBottom: 3, // Reduce margin bottom
+    color: "black",
+  },
+  productTitle: {
+    fontSize: 10, // Reduce font size
+    marginBottom: 3, // Reduce margin bottom
+    color: "black",
+  },
+  productPrice: {
+    fontSize: 14, // Reduce font size
+    fontWeight: "bold",
+    color: "green",
+    marginBottom: 5, // Reduce margin bottom
+  },
+});
