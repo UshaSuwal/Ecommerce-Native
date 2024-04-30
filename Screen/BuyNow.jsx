@@ -26,7 +26,7 @@ export function BuyNowScreen({ route ,navigation}) {
             <Text style={{color:"white", padding:5, fontSize:25}}>Pay Now</Text>
         </TouchableOpacity>
       </View>
-      <Suggest results={results} product={product}/>
+      <Suggest results={results} product={product} navigation={navigation}/>
     </ScrollView>
     </>
   );

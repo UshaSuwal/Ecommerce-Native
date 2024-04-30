@@ -24,7 +24,7 @@ export function CardCategory({ results, navigation, addItem, title }) {
               key={item.id}
               style={[styles.productContainer, styles.horizontalProduct]}
               onPress={() =>
-                navigation.navigate("DetailScreen", { product: item })
+                navigation.navigate("DetailScreen", { product: item, results:results })
               }
             >
               <Image source={{ uri: item.thumbnail }} style={styles.thumbnail} />

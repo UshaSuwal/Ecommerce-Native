@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { BuyNowScreen } from './Screen/BuyNow';
 import Login from './Screen/Login';
 import { LogBox } from 'react-native';
+import { CheckOut } from './Screen/Checkout';
 
 LogBox.ignoreAllLogs();
 const Tab = createBottomTabNavigator();
@@ -22,6 +23,7 @@ function ProductStack() {
       <Stack.Screen name="ProductScreen" component={ProductScreen} />
       <Stack.Screen name="DetailScreen" component={DetailScreen} />
       <Stack.Screen name="BuyNowScreen" component={BuyNowScreen} />
+      <Stack.Screen name="CheckOut" component={CheckOut} />
     </Stack.Navigator>
   );
 }

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import {
   Text,
   View,
-  Image,
+
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  Alert,
+ 
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { addCartItem } from '../reduxtoolkit/Slice';
@@ -19,7 +19,7 @@ export function DetailScreen({ route, navigation }) {
   const {results} = route.params;
   const dispatch = useDispatch();
   const [addedToCart, setAddedToCart] = useState(false); 
-  const [selectedImage, setSelectedImage] = useState(product.thumbnail);
+
 
   const addItem = item => {
     if (item) {
