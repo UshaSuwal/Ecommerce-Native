@@ -22,8 +22,8 @@ export function BuyNowScreen({ route ,navigation}) {
         <Detail product={product}/>
         <Text style={styles.price}>Before Discount: ${product.price.toFixed(2)}</Text>
         <Text style={styles.afterprice}>After Discount: ${(product.price.toFixed(2)-((product.discountPercentage/100)*product.price.toFixed(2))).toFixed(2)}</Text>
-        <TouchableOpacity style={{width:100,backgroundColor:"brown", alignItems:"center",borderRadius:5}}>
-            <Text style={{color:"white", padding:5, fontSize:25}}>Pay Now</Text>
+        <TouchableOpacity style={{width:200,backgroundColor:"brown", alignItems:"center",borderRadius:5}}>
+            <Text style={{color:"white", padding:5, fontSize:24}}>Proceed to Payment</Text>
         </TouchableOpacity>
       </View>
       <Suggest results={results} product={product} navigation={navigation}/>

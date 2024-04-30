@@ -41,7 +41,7 @@ export function CheckOut({ route }) {
           />
         )}
       </View>
-      
+
       <View style={styles.totalContainer}>
         <Text style={styles.totalText}>Total Price Before Discount: ${totalPriceBeforeDiscount.toFixed(2)}</Text>
         <Text style={styles.totalText}>Total Price After Discount: ${totalPriceAfterDiscount.toFixed(2)}</Text>
@@ -56,7 +56,8 @@ export function CheckOut({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 20,
+    padding: 20,
+    backgroundColor:"rgb(255 237 213)"
   },
   cartContainer: {
     flex: 1,
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
     fontWeight:'bold'
   },
   checkoutButton: {
-    backgroundColor: 'blue',
+    backgroundColor: 'brown',
     padding: 15,
     borderRadius: 5,
   },
