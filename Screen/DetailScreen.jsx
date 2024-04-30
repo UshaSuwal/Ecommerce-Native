@@ -33,7 +33,7 @@ export function DetailScreen({ route, navigation }) {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={{alignItems:'flex-end', top:30, marginRight:30}}>
+      <View style={{alignItems:'flex-end', top:20, marginRight:30}}>
       <CartIcon navigation={navigation}/>
       </View>
       <ImageList product={product}/>

@@ -18,14 +18,18 @@ export function CartScreen({navigation}) {
     <View style={{flex: 1, padding: 20, backgroundColor:"rgb(255 237 213)"}}>
       <Text
         style={{
-          fontSize: 24,
+          fontSize: 30,
           fontWeight: 'bold',
-          marginBottom: 20,
-          color: 'black',
+          marginVertical: 40,
+          color: 'brown',
         }}>
         Your Cart
       </Text>
       <CartItem addedItem={addedItem} removeItem={removeItem}/>
+      <Text style={{fontSize: 18, fontWeight: 'bold', color: 'black', marginLeft:250}}>
+          Total Items: {addedItem.cart.length}
+        </Text>
+        
     </View>
   );
 }

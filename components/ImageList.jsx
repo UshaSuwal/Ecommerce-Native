@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
         width: 300,
         height: 300,
         resizeMode: "contain",
+        marginBottom:-30,
       },
       smallImageContainer: {
         width: 50,

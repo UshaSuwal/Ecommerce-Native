@@ -60,9 +60,7 @@ export function CartItem({addedItem,removeItem}) {
           marginTop: 20,
           alignItems: 'flex-end',
         }}>
-        <Text style={{fontSize: 18, fontWeight: 'bold', color: 'black'}}>
-          Total Items: {addedItem.cart.length}
-        </Text>
+        
       </View>
     </View>
   );
