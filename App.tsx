@@ -8,6 +8,7 @@ import { CartScreen } from './Screen/CartScreen';
 import { DetailScreen } from './Screen/DetailScreen';
 import { ProductScreen } from './Screen/ProductScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { BuyNowScreen } from './Screen/BuyNow';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -30,6 +31,7 @@ function App() {
           <Stack.Screen name="ProductScreen" component={ProductScreen} />
           <Stack.Screen name="Cart" component={CartScreen} />
           <Stack.Screen name="DetailScreen" component={DetailScreen} />
+          <Stack.Screen name="BuyNowScreen" component={BuyNowScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

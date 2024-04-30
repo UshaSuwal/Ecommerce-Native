@@ -29,10 +29,10 @@ export function ProductScreen({ navigation }) {
     }
   }
 
-  const filterResultsByPrice = price => {
+  const filterResultsByCategory = category => {
     
     return results.filter(result => {
-      return result.category === price;
+      return result.category === category;
     });
   };
 
@@ -56,14 +56,14 @@ export function ProductScreen({ navigation }) {
           addItem={addItem}
         />
       <Card
-          results={filterResultsByPrice('smartphones')}
+          results={filterResultsByCategory('smartphones')}
           title="Smartphones"
           navigation={navigation}
           addItem={addItem}
         />
-        <Card results={filterResultsByPrice('laptops')} title="Laptops" navigation={navigation} addItem={addItem}/>
+        <Card results={filterResultsByCategory('laptops')} title="Laptops" navigation={navigation} addItem={addItem}/>
         <Card
-          results={filterResultsByPrice('fragrances')}
+          results={filterResultsByCategory('fragrances')}
           title="Fragrances"
           navigation={navigation}
           addItem={addItem}
