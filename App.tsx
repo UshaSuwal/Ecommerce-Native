@@ -16,7 +16,7 @@ const Stack = createNativeStackNavigator();
 function Home() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={ProductScreen} options={{tabBarIcon:()=>(<Icon name="home" size={30} color="black" />)}}/>
+      <Tab.Screen name="ProductScreen" component={ProductScreen} options={{tabBarIcon:()=>(<Icon name="home" size={30} color="black" />)}}/>
       <Tab.Screen name="Cart" component={CartScreen} options={{tabBarIcon:()=>(<Icon name="shopping-cart" size={30} color="black" />)}} />
     </Tab.Navigator>
   );
