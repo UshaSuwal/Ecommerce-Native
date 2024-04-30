@@ -15,7 +15,7 @@ export function CartScreen({navigation}) {
 
 
   return (
-    <View style={{flex: 1, padding: 20}}>
+    <View style={{flex: 1, padding: 20, backgroundColor:"rgb(255 237 213)"}}>
       <Text
         style={{
           fontSize: 24,

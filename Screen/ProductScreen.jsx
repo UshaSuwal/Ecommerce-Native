@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text,StyleSheet,ScrollView} from 'react-native';
+import { View, Text,StyleSheet,ScrollView, TouchableOpacity} from 'react-native';
 import SearchBar from '../components/SearchBar';
 import useSearch from '../hooks/useSearch';
 import { useSelector, useDispatch } from 'react-redux';
 import { addCartItem } from '../reduxtoolkit/Slice';
 import { TouchableButton } from '../components/atoms/Smallbutton';
 import { Card } from '../components/Card';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 
@@ -39,7 +40,12 @@ export function ProductScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={{ alignItems: 'flex-end' }}>
-        <TouchableButton name="Cart" length={addedItem.cart.length} navigation={navigation} screen="Cart"/>
+
+        <TouchableOpacity style={{ marginBottom: 10, marginRight: 10, alignItems:"center", flexDirection:"row" }} onPress={()=>{navigation.navigate("Cart")}} >
+        <Icon name="shopping-cart" size={30} color="rgb(251 146 60)" />
+        <Text style={{color:"orange", fontSize:20, marginLeft:5, marginTop:15}} >{addedItem.cart.length}</Text>
+        </TouchableOpacity>
+        
       </View>
       <SearchBar
         term={term}
@@ -78,7 +84,7 @@ export function ProductScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: 'rgb(255 237 213)',
     paddingHorizontal: 15,
     paddingTop: 10,
   },

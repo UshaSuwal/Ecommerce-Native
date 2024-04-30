@@ -7,7 +7,7 @@ const SearchBar = ({ term, onNewChange, onTermSubmit }) => {
   return (
     <View
       style={{
-        backgroundColor: 'gray',
+        backgroundColor: 'rgb(217 119 6)',
         height: 50,
         marginHorizontal: 10,
         borderRadius: 5,
@@ -16,12 +16,12 @@ const SearchBar = ({ term, onNewChange, onTermSubmit }) => {
         paddingHorizontal: 10,
         marginBottom:20,
       }}>
-      <Icon name="search" size={30} color="black" />
+      <Icon name="search" size={30} color="white" />
       <TextInput
         autoCapitalize="none"
         autoCorrect={false}
         placeholder="Search"
-        style={{ flex: 1, paddingLeft: 10 }}
+        style={{ flex: 1, paddingLeft: 10,fontSize:18 }}
         value={term}
         onChangeText={(newValue)=>onNewChange(newValue)}
         onEndEditing={onTermSubmit}

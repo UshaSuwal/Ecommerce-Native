@@ -68,13 +68,13 @@ export function DetailScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'rgb(255 237 213)',
   },
   
   detailsContainer: {
     width: '90%',
     alignItems: 'flex-start',
-    backgroundColor: '#f9f9f9',
+    backgroundColor: 'rgb(254 215 175)',
     padding: 20,
     borderRadius: 10,
     elevation: 3,

@@ -6,7 +6,7 @@ export function Card({ results, navigation, addItem, title }) {
     return null;
   }
 
-  const screenWidth = Dimensions.get('window').width;
+  
 
   return (
     <View style={styles.container}>
@@ -56,7 +56,7 @@ export function Card({ results, navigation, addItem, title }) {
               <Text style={styles.productBrand}>{item.brand}</Text>
               <Text style={styles.productTitle}>{item.title}</Text>
               <Text style={styles.productPrice}>${item.price}</Text>
-              <Button title="Cart" onPress={() => addItem(item)} />
+              <Button title="Cart+" onPress={() => addItem(item)} />
             </TouchableOpacity>
           )}
         />
@@ -69,6 +69,7 @@ export function Card({ results, navigation, addItem, title }) {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 20,
+    
   },
   title: {
     fontSize: 20,
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
     color: "black",
   },
   productContainer: {
-    backgroundColor: "#fff",
+    backgroundColor: "rgb(254 215 175)",
     borderRadius: 8,
     borderWidth: 1,
     borderColor: "#ccc",
