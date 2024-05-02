@@ -36,7 +36,7 @@ export function Card({ results, navigation, title }) {
           
           data={results}
           keyExtractor={result => result.id}
-          numColumns={3}
+          numColumns={2}
           renderItem={({ item }) => (
             <TouchableOpacity
               key={item.id}
@@ -76,11 +76,11 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     borderColor: "#ccc",
-    width: (Dimensions.get('window').width - 60) / 3, // Adjust width dynamically based on screen width
+    width: (Dimensions.get('window').width - 60) / 2, 
     alignItems: "center",
     marginBottom: 20,
     padding: 10,
-    marginHorizontal: 5, // Add horizontal margin for gap between cards
+    marginHorizontal: 5, 
   },
   horizontalProduct: {
     marginRight: 10,
@@ -89,26 +89,26 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   thumbnail: {
-    width: 100, // Adjust thumbnail width
-    height: 100, // Adjust thumbnail height
+    width: 100,
+    height: 100, 
     marginBottom: 5,
     resizeMode: "cover",
   },
   productBrand: {
-    fontSize: 12, // Reduce font size
+    fontSize: 12, 
     fontWeight: "bold",
-    marginBottom: 3, // Reduce margin bottom
+    marginBottom: 3, 
     color: "black",
   },
   productTitle: {
-    fontSize: 10, // Reduce font size
-    marginBottom: 3, // Reduce margin bottom
+    fontSize: 10, 
+    marginBottom: 3, 
     color: "black",
   },
   productPrice: {
-    fontSize: 14, // Reduce font size
+    fontSize: 14, 
     fontWeight: "bold",
     color: "green",
-    marginBottom: 5, // Reduce margin bottom
+    marginBottom: 5, 
   },
 });
