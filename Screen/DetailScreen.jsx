@@ -25,16 +25,16 @@ export function DetailScreen({route, navigation}) {
   const dispatch = useDispatch();
   const toast = useToast();
   const favorites = useSelector(state => state.cart.favoriteItems);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     setIsFavorite(favorites.some(favorite => favorite.id === product.id));
   }, [favorites, product]);
 
-  const addItem = (item,quantityNum) => {
+  const addItem = (item, quantityNum) => {
     if (item) {
-      dispatch(addCartItem({...item, quantity: quantityNum}));
+      dispatch(addCartItem({...item, quantity:quantityNum }));
       toast.show('Item added to cart successfully', {
         type: 'success',
         placement: 'top',
@@ -119,6 +119,7 @@ export function DetailScreen({route, navigation}) {
               navigation.navigate('BuyNowScreen', {
                 product: product,
                 results: results,
+                quantity:quantity,
               })
             }>
             <Text style={styles.addButtonText}>Buy Now</Text>

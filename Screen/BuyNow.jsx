@@ -3,25 +3,28 @@ import { Text, View,StyleSheet, ScrollView, TouchableOpacity } from "react-nativ
 import { ImageList } from "../components/ImageList";
 import { Detail } from '../components/Detail';
 import { Suggest } from "../components/Suggest";
-import { CartIcon } from "../components/atoms/CartIcon";
+
 
 export function BuyNowScreen({ route ,navigation}) {
   const { product } = route.params;
   const {results}=route.params;
+  const {quantity}=route.params;
 
   return (
     <>
-    <View style={styles.cartIconContainer}>
-        <CartIcon navigation={navigation}/>
-      </View>
+    
     <ScrollView contentContainerStyle={styles.container}>
       
       <ImageList product={product}/>
       
       <View style={styles.detailsContainer}>
         <Detail product={product}/>
-        <Text style={styles.price}>Before Discount: ${product.price.toFixed(2)}</Text>
-        <Text style={styles.afterprice}>After Discount: ${(product.price.toFixed(2)-((product.discountPercentage/100)*product.price.toFixed(2))).toFixed(2)}</Text>
+        <View style={{flexDirection:"row"}}>
+        <Text style={{color:"#333", fontWeight:"bold"}}>Quantity: </Text>
+        <Text style={{color:"#666"}}>{quantity}</Text>
+      </View>
+        <Text style={styles.price}>Before Discount: ${product.price.toFixed(2)*quantity}</Text>
+        <Text style={styles.afterprice}>After Discount: ${((product.price.toFixed(2)-((product.discountPercentage/100)*product.price.toFixed(2))).toFixed(2))*quantity}</Text>
         <TouchableOpacity style={{width:200,backgroundColor:"brown", alignItems:"center",borderRadius:5}}>
             <Text style={{color:"white", padding:5, fontSize:24}}>Proceed to Payment</Text>
         </TouchableOpacity>
@@ -36,7 +39,6 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: "rgb(255 237 213)",
-    marginTop:30,
   },
   cartIconContainer: {
     position: 'absolute',

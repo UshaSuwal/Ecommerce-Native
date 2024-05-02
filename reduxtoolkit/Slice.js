@@ -16,28 +16,23 @@ const slice = createSlice({
 
     
     addCartItem(state, action) {
-      const newItem = action.payload;
-      const existingItem = state.cartItems.find(item => item.id === newItem.id);
-
-      if (existingItem) {
-        if(action.payload.quantity){
-          if (existingItem.quantity + action.payload.quantity > existingItem.stock){
-            return
+     
+        const newItem = action.payload;
+        const existingItemIndex = state.cartItems.findIndex(item => item.id === newItem.id);
+      
+        if (existingItemIndex !== -1) {
+          const existingItem = state.cartItems[existingItemIndex];
+          const newQuantity = (action.payload.quantity || 1) + existingItem.quantity;
+          
+          if (newQuantity > existingItem.stock) {
+            return;
+          } else {
+            state.cartItems[existingItemIndex].quantity = newQuantity;
           }
-          else{
-          existingItem.quantity +=action.payload.quantity
-          }
-        }else{
-          if (existingItem.quantity + 1 > existingItem.stock){
-            return
-          }
-          else{
-        existingItem.quantity += 1;
-          }
-        }
-      } else {
+        
+        }else {
         (action.payload.quantity)? state.cartItems.push({...newItem, quantity: action.payload.quantity}) : state.cartItems.push({...newItem, quantity: 1});
-      }
+       }
     },
     removeCartItem(state, action) {
       state.cartItems = state.cartItems.filter(
@@ -71,3 +66,9 @@ export const {
   fetchApiData,
 } = slice.actions;
 export default slice.reducer;
+
+
+
+
+
+
