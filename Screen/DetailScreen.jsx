@@ -1,26 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Text,
   View,
-
   StyleSheet,
   ScrollView,
   TouchableOpacity,
- 
 } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { addCartItem } from '../reduxtoolkit/Slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCartItem, addToFavorites, removeFromFavorites } from '../reduxtoolkit/Slice';
 import { ImageList } from "../components/ImageList";
 import { Detail } from '../components/Detail';
 import { CartIcon } from '../components/atoms/CartIcon';
 import { useToast } from "react-native-toast-notifications";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export function DetailScreen({ route, navigation }) {
   const { product } = route.params;
-  const {results} = route.params;
+  const { results } = route.params;
   const dispatch = useDispatch();
   const toast = useToast();
+  const favorites = useSelector(state => state.cart.favoriteItems); // Assuming you have a favorites state in your Redux store
 
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  // Check if the current product is in favorites on component mount
+  useEffect(() => {
+    setIsFavorite(favorites.some(favorite => favorite.id === product.id));
+  }, [favorites, product]);
 
   const addItem = item => {
     if (item) {
@@ -31,20 +37,45 @@ export function DetailScreen({ route, navigation }) {
         duration: 2000,
         offset: 30,
         animationType: "slide-in",
-        textColor: "black", 
+        textColor: "black",
       });
-      
+    }
+  };
+
+  const addToFavoritesHandler = () => {
+    if (isFavorite) {
+      dispatch(removeFromFavorites(product));
+      setIsFavorite(false); // Set isFavorite to false when removed from favorites
+      toast.show("Item removed from favorites", {
+        type: "success",
+        placement: "top",
+        duration: 2000,
+        offset: 30,
+        animationType: "slide-in",
+        textColor: "black",
+      });
+    } else {
+      dispatch(addToFavorites(product));
+      setIsFavorite(true); // Set isFavorite to true when added to favorites
+      toast.show("Item added to favorites", {
+        type: "success",
+        placement: "top",
+        duration: 2000,
+        offset: 30,
+        animationType: "slide-in",
+        textColor: "black",
+      });
     }
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={{alignItems:'flex-end', top:20, marginRight:30}}>
-      <CartIcon navigation={navigation}/>
+      <View style={{ alignItems: 'flex-end', top: 20, marginRight: 30 }}>
+        <CartIcon navigation={navigation} />
       </View>
-      <ImageList product={product}/>
+      <ImageList product={product} />
       <View style={styles.detailsContainer}>
-        <Detail product={product}/>
+        <Detail product={product} />
         <Text style={styles.price}>${product.price}</Text>
         <View style={{ flexDirection: 'row' }}>
           <TouchableOpacity
@@ -57,14 +88,16 @@ export function DetailScreen({ route, navigation }) {
           <TouchableOpacity
             style={[styles.addButton, styles.buyNowButton]}
             onPress={() =>
-              navigation.navigate("BuyNowScreen", { product: product,results:results })
+              navigation.navigate("BuyNowScreen", { product: product, results: results })
             }
           >
             <Text style={styles.addButtonText}>Buy Now</Text>
           </TouchableOpacity>
-        </View>
 
-        
+          <TouchableOpacity onPress={addToFavoritesHandler} >
+            <Icon name="star-o" style={{ color: isFavorite ? "yellow" : "white", fontSize: 30 }} />
+          </TouchableOpacity>
+        </View>
       </View>
     </ScrollView>
   );
@@ -75,7 +108,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     backgroundColor: 'rgb(255 237 213)',
   },
-  
+
   detailsContainer: {
     width: '90%',
     alignItems: 'flex-start',
@@ -85,7 +118,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     alignSelf: 'center',
   },
-  
+
   price: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -108,3 +141,5 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
 });
+
+export default DetailScreen;

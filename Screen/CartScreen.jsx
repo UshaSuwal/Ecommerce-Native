@@ -5,7 +5,7 @@ import {removeCartItem} from '../reduxtoolkit/Slice';
 import {CartItem} from '../components/CartItem';
 
 export function CartScreen({navigation}) {
-  const addedItem = useSelector(state => state);
+  const addedItem = useSelector(state => state.cart.cartItems);
   const dispatch = useDispatch();
 
   const removeItem = item => {
@@ -46,7 +46,7 @@ export function CartScreen({navigation}) {
             color: 'black',
             marginLeft: 250,
           }}>
-          Total Items: {addedItem.cart.length}
+          Total Items: {addedItem.length}
         </Text>
         <TouchableOpacity
           style={{

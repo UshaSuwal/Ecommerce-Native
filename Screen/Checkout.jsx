@@ -4,12 +4,12 @@ import { Text, View, Image, FlatList, StyleSheet, TouchableOpacity } from 'react
 export function CheckOut({ route }) {
   const { addedItem } = route.params;
 
-  const totalPriceBeforeDiscount = addedItem.cart.reduce(
+  const totalPriceBeforeDiscount = addedItem.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
 
-  const totalPriceAfterDiscount = addedItem.cart.reduce(
+  const totalPriceAfterDiscount = addedItem.reduce(
     (total, item) =>
       total + (item.price - (item.price * item.discountPercentage) / 100) * item.quantity,
     0
@@ -31,11 +31,11 @@ export function CheckOut({ route }) {
     <View style={styles.container}>
         <Text style={{color:'black', fontSize:35, fontWeight: 'bold',marginBottom:20, color:"brown"}}>Checkout</Text>
       <View style={styles.cartContainer}>
-        {addedItem.cart.length === 0 ? (
+        {addedItem.length === 0 ? (
           <Text style={styles.emptyCart}>Your cart is empty</Text>
         ) : (
           <FlatList
-            data={addedItem.cart}
+            data={addedItem}
             renderItem={renderItem}
             keyExtractor={(item) => item.id.toString()}
           />

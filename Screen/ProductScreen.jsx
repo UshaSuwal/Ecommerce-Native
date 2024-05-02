@@ -17,7 +17,7 @@ export function ProductScreen({ navigation }) {
   
   
   const dispatch = useDispatch();
-  const addedItem = useSelector(state => state);
+  
 
 
   const addItem = (item) => {
@@ -39,7 +39,7 @@ export function ProductScreen({ navigation }) {
       <View style={{ alignItems: 'flex-end' }}>
 
         
-        <CartIcon navigation={navigation}/>
+        <CartIcon navigation={navigation} />
         
       </View>
       <SearchBar

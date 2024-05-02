@@ -1,28 +1,41 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = [];
+const initialState = {
+  cartItems: [],
+  favoriteItems: [],
+};
 
-const Slice = createSlice({
+const slice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
     addCartItem(state, action) {
       const newItem = action.payload;
-      const existingItem = state.find(item => item.id === newItem.id);
-        
+      const existingItem = state.cartItems.find(item => item.id === newItem.id);
+      
       if (existingItem) {
-        
         existingItem.quantity += 1;
       } else {
-        
-        state.push({ ...newItem, quantity: 1 });
+        state.cartItems.push({ ...newItem, quantity: 1 });
       }
     },
     removeCartItem(state, action) {
-      return state.filter((item, index) => item.description !== action.payload.description);
+      state.cartItems = state.cartItems.filter(item => item.description !== action.payload.description);
+    },
+   
+    addToFavorites(state, action) {
+      const newItem = action.payload;
+      const existingItem = state.favoriteItems.find(item => item.id === newItem.id);
+
+      if (!existingItem) {
+        state.favoriteItems.push(newItem);
+      }
+    },
+    removeFromFavorites(state, action) {
+      state.favoriteItems = state.favoriteItems.filter(item => item.id !== action.payload.id);
     },
   },
 });
 
-export const { addCartItem, removeCartItem } = Slice.actions;
-export default Slice.reducer;
+export const { addCartItem, removeCartItem, addToFavorites, removeFromFavorites } = slice.actions;
+export default slice.reducer;

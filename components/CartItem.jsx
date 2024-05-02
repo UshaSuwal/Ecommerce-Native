@@ -43,11 +43,11 @@ export function CartItem({addedItem,removeItem}) {
       );
   return (
     <View>
-      {addedItem.cart.length === 0 ? (
+      {addedItem.length === 0 ? (
         <Text style={{color: 'black'}}>Your cart is empty</Text>
       ) : (
         <FlatList
-          data={addedItem.cart}
+          data={addedItem}
           renderItem={renderItem}
           keyExtractor={item => item.id.toString()}
         />
