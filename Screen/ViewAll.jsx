@@ -4,7 +4,7 @@ import { Card } from "../components/Card";
 export function ViewAll({route, navigation}){
     const {results}= route.params;
     return(
-        <ScrollView style={{margin:20}}>
+        <ScrollView style={{padding:20, backgroundColor:"rgb(255 237 213)"}}>
             <Card navigation={navigation} results={results} title="All"/>
         </ScrollView>
 

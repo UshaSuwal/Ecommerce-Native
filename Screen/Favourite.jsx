@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFromFavorites } from '../reduxtoolkit/Slice';
 
@@ -12,6 +12,7 @@ const FavoritesScreen = () => {
   }
 
   const renderItem = ({ item }) => (
+    
     <TouchableOpacity style={styles.itemContainer}>
       <Image source={{ uri: item.thumbnail }} style={styles.itemImage} />
       <View style={styles.itemDetails}>
@@ -23,10 +24,11 @@ const FavoritesScreen = () => {
       </TouchableOpacity>
       </View>
     </TouchableOpacity>
+    
   );
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.title}>Favorites</Text>
       {favoriteItems.length>0 ?(
         <FlatList
@@ -36,18 +38,18 @@ const FavoritesScreen = () => {
         contentContainerStyle={styles.listContainer}
       />
       ):(
-        <Text style={{color:"black", fontSize:20, top:30}}>Your Favourite is empty</Text>
+        <Text style={{color:"black", fontSize:20, marginTop:20}}>Your Favourite is empty</Text>
       )}
       
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
-    padding: 10,
+    backgroundColor:"rgb(255 237 213)",
+    padding: 20,
   },
   title: {
     fontSize: 40,
