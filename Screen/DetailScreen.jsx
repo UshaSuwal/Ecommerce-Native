@@ -23,7 +23,7 @@ export function DetailScreen({ route, navigation }) {
 
   const [isFavorite, setIsFavorite] = useState(false);
 
-  // Check if the current product is in favorites on component mount
+  
   useEffect(() => {
     setIsFavorite(favorites.some(favorite => favorite.id === product.id));
   }, [favorites, product]);
@@ -45,7 +45,7 @@ export function DetailScreen({ route, navigation }) {
   const addToFavoritesHandler = () => {
     if (isFavorite) {
       dispatch(removeFromFavorites(product));
-      setIsFavorite(false); // Set isFavorite to false when removed from favorites
+      setIsFavorite(false); 
       toast.show("Item removed from favorites", {
         type: "success",
         placement: "top",
@@ -56,7 +56,7 @@ export function DetailScreen({ route, navigation }) {
       });
     } else {
       dispatch(addToFavorites(product));
-      setIsFavorite(true); // Set isFavorite to true when added to favorites
+      setIsFavorite(true); 
       toast.show("Item added to favorites", {
         type: "success",
         placement: "top",
@@ -94,8 +94,8 @@ export function DetailScreen({ route, navigation }) {
             <Text style={styles.addButtonText}>Buy Now</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={addToFavoritesHandler} >
-            <Icon name="star-o" style={{ color: isFavorite ? "yellow" : "white", fontSize: 30 }} />
+          <TouchableOpacity onPress={addToFavoritesHandler} style={{marginTop:23, marginLeft:60}} >
+            <Icon name="star" style={{ color: isFavorite ? "rgb(245 158 11)" : "rgb(148 163 184)", fontSize: 30 }} />
           </TouchableOpacity>
         </View>
       </View>

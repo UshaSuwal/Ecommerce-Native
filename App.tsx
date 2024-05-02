@@ -61,7 +61,7 @@ function App() {
               component={FavoritesScreen}
               options={{
                 tabBarIcon: () => (
-                  <Icon name="shopping-cart" size={30} color="black" />
+                  <Icon name="star" style={{ color:"black"}} size={30}  />
                 ),
                 tabBarLabel: '',
               }}
