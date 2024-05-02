@@ -48,8 +48,16 @@ export function DetailScreen({route, navigation}) {
 
   const onCheckLimit = value => {
     const parsedQty = Number.parseInt(value);
-    if (Number.isNaN(parsedQty)) {
-      setQuantity(0);
+    if (Number.isNaN(parsedQty) || parsedQty==0) {
+      setQuantity(1);
+      toast.show('Quantity cant be 0', {
+        type: 'danger',
+        placement: 'top',
+        duration: 2000,
+        offset: 30,
+        animationType: 'slide-in',
+        textColor: 'black',
+      });
     } else if (parsedQty > product.stock) {
       setQuantity(product.stock);
       toast.show('Exceeded stock', {
