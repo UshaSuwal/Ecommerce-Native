@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addCartItem, addToFavorites, removeFromFavorites } from '../reduxtoolkit/Slice';
 import { ImageList } from "../components/ImageList";
 import { Detail } from '../components/Detail';
-import { CartIcon } from '../components/atoms/CartIcon';
+
 import { useToast } from "react-native-toast-notifications";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -19,7 +19,7 @@ export function DetailScreen({ route, navigation }) {
   const { results } = route.params;
   const dispatch = useDispatch();
   const toast = useToast();
-  const favorites = useSelector(state => state.cart.favoriteItems); // Assuming you have a favorites state in your Redux store
+  const favorites = useSelector(state => state.cart.favoriteItems); 
 
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -70,9 +70,7 @@ export function DetailScreen({ route, navigation }) {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={{ alignItems: 'flex-end', top: 20, marginRight: 30 }}>
-        <CartIcon navigation={navigation} />
-      </View>
+      
       <ImageList product={product} />
       <View style={styles.detailsContainer}>
         <Detail product={product} />

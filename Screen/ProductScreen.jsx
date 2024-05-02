@@ -6,9 +6,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addCartItem } from '../reduxtoolkit/Slice';
 
 import { Card } from '../components/Card';
-import Icon from 'react-native-vector-icons/FontAwesome';
+
 import { CardCategory } from '../components/CardCategory';
-import { CartIcon } from '../components/atoms/CartIcon';
+
+
 
 
 export function ProductScreen({ navigation }) {
@@ -35,13 +36,10 @@ export function ProductScreen({ navigation }) {
   };
 
   return (
+    
     <View style={styles.container}>
-      <View style={{ alignItems: 'flex-end' }}>
-
-        
-        <CartIcon navigation={navigation} />
-        
-      </View>
+      
+   
       <SearchBar
         term={term}
         onNewChange={(newValue) => setTerm(newValue)}

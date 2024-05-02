@@ -15,15 +15,28 @@ import {CheckOut} from './Screen/Checkout';
 import {ToastProvider} from 'react-native-toast-notifications';
 import FavoritesScreen from './Screen/Favourite';
 import { ViewAll } from './Screen/ViewAll';
+import { Header } from '@react-navigation/elements';
+import { CartIcon } from './components/atoms/CartIcon';
+
+
+
 
 LogBox.ignoreAllLogs();
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-function ProductStack() {
+function ProductStack({ navigation }) {
   return (
-    <Stack.Navigator >
-      <Stack.Screen name="ProductScreen" component={ProductScreen} />
+    <Stack.Navigator screenOptions={{
+      headerRight: () => (
+        <CartIcon navigation={navigation} />
+      )
+    }}>
+      <Stack.Screen 
+        name="ProductScreen" 
+        component={ProductScreen} 
+        
+      />
       <Stack.Screen name="DetailScreen" component={DetailScreen} />
       <Stack.Screen name="BuyNowScreen" component={BuyNowScreen} />
       <Stack.Screen name="CheckOut" component={CheckOut} />
