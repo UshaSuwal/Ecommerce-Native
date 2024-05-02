@@ -51,12 +51,12 @@ function App() {
     <ToastProvider>
       <Provider store={MyStore}>
         <NavigationContainer>
-          <Tab.Navigator screenOptions={{headerShown: false}}>
+          <Tab.Navigator screenOptions={{headerShown: false, tabBarActiveTintColor:"brown"}}>
             <Tab.Screen
               name="Home"
               component={ProductStack}
               options={{
-                tabBarIcon: () => <Icon name="home" size={30} color="black" />,
+                tabBarIcon: ({color}) => <Icon name="home" size={30} color={color} />,
                 tabBarLabel: '',
               }}
             />
@@ -64,8 +64,8 @@ function App() {
               name="Cart"
               component={CartScreen}
               options={{
-                tabBarIcon: () => (
-                  <Icon name="shopping-cart" size={30} color="black" />
+                tabBarIcon: ({color}) => (
+                  <Icon name="shopping-cart" size={30} color={color} />
                 ),
                 tabBarLabel: '',
               }}
@@ -75,8 +75,8 @@ function App() {
               name="FavouriteScreen"
               component={FavoritesScreen}
               options={{
-                tabBarIcon: () => (
-                  <Icon name="star" style={{ color:"black"}} size={30}  />
+                tabBarIcon: ({color}) => (
+                  <Icon name="star"  size={30} color={color}  />
                 ),
                 tabBarLabel: '',
               }}
