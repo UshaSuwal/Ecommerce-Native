@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = [];
+const initialState = {
+  results: [],
+};
 
 const ApiSlice = createSlice({
   name: 'api',
@@ -9,7 +11,7 @@ const ApiSlice = createSlice({
     fetchApiData(state, action) {
       
         
-        state.push(action.payload);
+        state.results.push(action.payload);
       
     },
     

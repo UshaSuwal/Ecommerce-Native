@@ -14,6 +14,7 @@ import {LogBox} from 'react-native';
 import {CheckOut} from './Screen/Checkout';
 import {ToastProvider} from 'react-native-toast-notifications';
 import FavoritesScreen from './Screen/Favourite';
+import { ViewAll } from './Screen/ViewAll';
 
 LogBox.ignoreAllLogs();
 const Tab = createBottomTabNavigator();
@@ -27,6 +28,7 @@ function ProductStack() {
       <Stack.Screen name="BuyNowScreen" component={BuyNowScreen} />
       <Stack.Screen name="CheckOut" component={CheckOut} />
       <Stack.Screen name="FavouriteScreen" component={FavoritesScreen} />
+      <Stack.Screen name="ViewAll" component={ViewAll} />
     </Stack.Navigator>
   );
 }

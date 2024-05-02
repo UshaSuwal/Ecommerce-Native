@@ -10,10 +10,13 @@ export function CardCategory({ results, navigation, addItem, title }) {
 
   return (
     <View style={styles.container}>
-      
-      
       <View>
+        <View style={{flexDirection:"row", justifyContent:"space-between"}}>
         <Text style={styles.title}>{title}</Text>
+        <TouchableOpacity onPress={()=>{navigation.navigate("ViewAll",{ results: results})}}>
+          <Text style={{color:"black", marginRight:20}}>View All</Text>
+        </TouchableOpacity>
+        </View>
         <FlatList
           horizontal={true}
           showsHorizontalScrollIndicator={false}
