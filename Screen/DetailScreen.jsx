@@ -34,7 +34,7 @@ export function DetailScreen({route, navigation}) {
 
   const addItem = (item, quantityNum) => {
     if (item) {
-      dispatch(addCartItem({...item, quantity:quantityNum }));
+      dispatch(addCartItem({...item, quantity: quantityNum}));
       toast.show('Item added to cart successfully', {
         type: 'success',
         placement: 'top',
@@ -48,7 +48,7 @@ export function DetailScreen({route, navigation}) {
 
   const onCheckLimit = value => {
     const parsedQty = Number.parseInt(value);
-    if (Number.isNaN(parsedQty) || parsedQty==0) {
+    if (Number.isNaN(parsedQty) || parsedQty == 0) {
       setQuantity(1);
       toast.show('Quantity cant be 0', {
         type: 'danger',
@@ -99,20 +99,53 @@ export function DetailScreen({route, navigation}) {
     }
   };
 
+  const increaseQuantity = () => {
+    if (quantity < product.stock) {
+      setQuantity(quantity + 1);
+    } else {
+      toast.show('Exceeded stock', {
+        type: 'danger',
+        placement: 'top',
+        duration: 2000,
+        offset: 30,
+        animationType: 'slide-in',
+        textColor: 'black',
+      });
+    }
+  };
+
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <ImageList product={product} />
       <View style={styles.detailsContainer}>
         <Detail product={product} />
         <Text style={styles.price}>${product.price}</Text>
-        <View style={{width:70, borderWidth:2, marginTop:10}}>
+        <View
+          style={{flexDirection: 'row', alignItems: 'center', marginTop: 10}}>
+          <TouchableOpacity
+            onPress={decreaseQuantity}
+            style={styles.quantityButton}>
+            <Icon name="minus" style={styles.quantityIcon} />
+          </TouchableOpacity>
           <TextInput
-            style={{color:"black", padding:1, paddingLeft:10, fontSize:20}}
-            value={quantity.toString()} 
-            onChangeText={newValue => setQuantity(newValue)} 
-            onEndEditing={event => onCheckLimit(event.nativeEvent.text)} 
+            style={styles.quantityInput}
+            value={quantity.toString()}
+            onChangeText={newValue => onCheckLimit(newValue)}
             keyboardType="numeric"
+            editable={false} 
           />
+
+          <TouchableOpacity
+            onPress={increaseQuantity}
+            style={styles.quantityButton}>
+            <Icon name="plus" style={styles.quantityIcon} />
+          </TouchableOpacity>
         </View>
         <View style={{flexDirection: 'row', marginTop: 10}}>
           <TouchableOpacity
@@ -127,7 +160,7 @@ export function DetailScreen({route, navigation}) {
               navigation.navigate('BuyNowScreen', {
                 product: product,
                 results: results,
-                quantity:quantity,
+                quantity: quantity,
               })
             }>
             <Text style={styles.addButtonText}>Buy Now</Text>
@@ -155,7 +188,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     backgroundColor: 'rgb(255 237 213)',
   },
-
   detailsContainer: {
     width: '90%',
     alignItems: 'flex-start',
@@ -165,7 +197,6 @@ const styles = StyleSheet.create({
     elevation: 3,
     alignSelf: 'center',
   },
-
   price: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -187,7 +218,23 @@ const styles = StyleSheet.create({
     backgroundColor: 'green',
     marginLeft: 10,
   },
- 
+  quantityInput: {
+    color: 'black',
+    padding: 5,
+    fontSize: 20,
+    textAlign: 'center',
+    width: 50,
+  },
+  quantityButton: {
+    backgroundColor: 'lightgray',
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+  },
+  quantityIcon: {
+    fontSize: 20,
+    color: 'brown',
+  },
 });
 
 export default DetailScreen;
