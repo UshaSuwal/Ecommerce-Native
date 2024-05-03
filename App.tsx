@@ -17,6 +17,8 @@ import FavoritesScreen from './Screen/Favourite';
 import { ViewAll } from './Screen/ViewAll';
 import { Header } from '@react-navigation/elements';
 import { CartIcon } from './components/atoms/CartIcon';
+import BootSplash from "react-native-bootsplash";
+import { useEffect } from 'react';
 
 
 
@@ -47,6 +49,18 @@ function ProductStack({ navigation }) {
 }
 
 function App() {
+  useEffect(() => {
+    const init = async () => {
+      // …do multiple sync or async tasks
+    };
+
+    init().finally(async () => {
+      await BootSplash.hide({ fade: true });
+      console.log("BootSplash has been hidden successfully");
+    });
+  }, []);
+
+  
   return (
     <ToastProvider>
       <Provider store={MyStore}>
