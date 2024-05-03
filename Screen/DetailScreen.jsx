@@ -48,26 +48,8 @@ export function DetailScreen({route, navigation}) {
 
   const onCheckLimit = value => {
     const parsedQty = Number.parseInt(value);
-    if (Number.isNaN(parsedQty) || parsedQty == 0) {
-      setQuantity(1);
-      toast.show('Quantity cant be 0', {
-        type: 'danger',
-        placement: 'top',
-        duration: 2000,
-        offset: 30,
-        animationType: 'slide-in',
-        textColor: 'black',
-      });
-    } else if (parsedQty > product.stock) {
+     if (parsedQty > product.stock) {
       setQuantity(product.stock);
-      toast.show('Exceeded stock', {
-        type: 'danger',
-        placement: 'top',
-        duration: 2000,
-        offset: 30,
-        animationType: 'slide-in',
-        textColor: 'black',
-      });
     } else {
       setQuantity(parsedQty);
     }
@@ -78,7 +60,7 @@ export function DetailScreen({route, navigation}) {
       dispatch(removeFromFavorites(product));
       setIsFavorite(false);
       toast.show('Item removed from favorites', {
-        type: 'success',
+        type: 'danger',
         placement: 'top',
         duration: 2000,
         offset: 30,
@@ -146,6 +128,8 @@ export function DetailScreen({route, navigation}) {
             style={styles.quantityButton}>
             <Icon name="plus" style={styles.quantityIcon} />
           </TouchableOpacity>
+
+
         </View>
         <View style={{flexDirection: 'row', marginTop: 10}}>
           <TouchableOpacity
