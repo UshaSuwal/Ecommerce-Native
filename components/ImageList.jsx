@@ -2,11 +2,31 @@ import React from "react"
 import { useState } from "react";
 import { Image,ScrollView,View,TouchableOpacity ,StyleSheet} from "react-native";
 export function ImageList({product}){
-    const [selectedImage, setSelectedImage] = useState(product.thumbnail);
+    
+    const imageWidth = 230; 
+  const imageSpacing = 80; 
+  const totalImageWidth = imageWidth + imageSpacing;
     return(
         <>
         <View style={styles.imageContainer}>
-        <Image source={{ uri: selectedImage }} style={styles.mainImage} />
+        <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        snapToInterval={totalImageWidth}
+        decelerationRate="fast" 
+        snapToAlignment="center" 
+      >
+        {product.images.map((image, index) => (
+          <View style={styles.imageContainer}>
+            <Image
+              source={{ uri: image }}
+              style={styles.mainImage}
+            />
+          </View>
+        ))}
+      </ScrollView>
+      
+     
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {product.images.map((image, index) => (
             <TouchableOpacity
@@ -29,7 +49,7 @@ export function ImageList({product}){
 const styles = StyleSheet.create({
     
     imageContainer: {
-        alignItems: "center",
+        paddingHorizontal:40,
         
       },
       mainImage: {

@@ -101,10 +101,11 @@ export function DetailScreen({route, navigation}) {
       setQuantity(quantity - 1);
     }
   };
-
+  console.log(product)
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <ImageList product={product} />
+      
       <View style={styles.detailsContainer}>
         <Detail product={product} />
         <Text style={styles.price}>${product.price}</Text>
