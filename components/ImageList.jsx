@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Image, ScrollView, View, TouchableOpacity, StyleSheet } from 'react-native';
 
 export function ImageList({ product }) {
-  const [selectedImage, setSelectedImage] = useState(product.images[0]);
+  const [selectedImage, setSelectedImage] = useState("");
   const imageWidth = 230;
   const imageSpacing = 80;
   const totalImageWidth = imageWidth + imageSpacing;
-  let set = true;
+  let c=0
 
   return (
     <View style={styles.imageContainer}>
@@ -19,11 +19,14 @@ export function ImageList({ product }) {
       >
         {product.images.map((image, index) => (
           <View key={index} style={styles.imageContainer}>
-            {set ? (
-              <>
+            {selectedImage ? (
+              c=c+1
+              (c>=2)?(
+                <Image source={{ uri: image }} style={styles.mainImage} />
+              ):(
                 <Image source={{ uri: selectedImage }} style={styles.mainImage} />
-
-              </>
+              )
+              
             ) : (
               <Image source={{ uri: image }} style={styles.mainImage} />
             )}
@@ -36,7 +39,6 @@ export function ImageList({ product }) {
           <TouchableOpacity
             key={index}
             onPress={() => {
-              set = true;
               setSelectedImage(image);
             }}
             style={styles.smallImageContainer}
